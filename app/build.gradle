@@ -1,0 +1,42 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "24.0.3"
+    defaultConfig {
+        applicationId "com.usbcam.pngcui.usbcamdemo"
+        minSdkVersion 19
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk{
+            moduleName "UsbCam"
+            abiFilters "armeabi-v7a","arm64-v8a",  "x86"
+            stl "stlport_static"
+            ldLibs "log", "z", "m"
+            ldLibs "jnigraphics"
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+//Error:Execution failed for task ':app:compileDebugNdk'.
+//        > com.android.ide.common.process.ProcessException:
+// Error while executing 'D:\Android\SDK\android-ndk-r10d\ndk-build.cmd' with arguments
+// {NDK_PROJECT_PATH=null APP_BUILD_SCRIPT=D:\Android\Project\UsbCamDemo\app\build\intermediates\ndk\debug\Android.mk APP_PLATFORM=android-24 NDK_OUT=D:\Android\Project\UsbCamDemo\app\build\intermediates\ndk\debug\obj NDK_LIBS_OUT=D:\Android\Project\UsbCamDemo\app\build\intermediates\ndk\debug\lib APP_STL=stlport_static APP_ABI=armeabi-v7a,armeabi,x86}
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+
+}
