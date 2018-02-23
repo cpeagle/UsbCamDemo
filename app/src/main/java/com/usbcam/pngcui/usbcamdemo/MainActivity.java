@@ -174,7 +174,7 @@ public class MainActivity extends Activity implements View.OnClickListener, Surf
                     }
                     jni.processCamera();
                     jni.pixeltobmp(bmp);
-
+//test
                     Canvas canvas = mHolder.lockCanvas();
                     if (canvas != null)
                     {
